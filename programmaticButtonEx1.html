@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<style>
+h1 {
+	font-family: helvetica;
+ 	font-size: 400%;
+	font-weight: bolder; }
+
+h2 {
+	font-size: 100%;
+	font-family: helvetica;
+	font-weight: medium;
+}
+
+p {
+	font-size: 100%;
+	font-family: helvetica;
+	font-weight: normal; }
+
+body {
+	padding: 0;
+	margin: 0;
+	display: block;
+	justify-content: center;
+}
+
+div {
+	display: block;
+}
+
+#message-container {
+	width: 80%;
+	max-width: 1200px;
+}
+
+#message-container div {
+	background-color: #CCC;
+	padding: 5px;
+}
+
+#message-container div:nth-child(2n) {
+	background-color: #FFF;
+}
+
+#send-container {
+	position: fixed;
+	padding-bottom: 30px;
+	bottom: 0;
+	background-color: white;
+	max-width: 1200px;
+	width: 80%;
+	display: flex;
+}
+
+#message-input {
+	flex-grow: 1;
+}
+</style>
+
+<head>
+		<meta charset="utf-8">
+</head>
+
+<body>
+	<!-- Form -->
+	<div id="message_container">
+    <form id="send_container">
+      <input name="message_input" type="text" placeholder="Phrase goes here" value="">
+      <input type="submit" value="Create New Phrase Button">
+    </form>
+  </div>
+
+	<div id="button_anchor">
+		<p> <b> Text buttons will appear below. </b> </p>
+	</div>
+
+	<div id="text_anchor">
+		<p><b> Text will appear below. </b> </p>
+	</div>
+
+	<script>
+		'use strict';
+
+		//appends text to end of the page.
+		function insertText(text){
+			let newLine        = document.createElement("p");
+			newLine.innerHTML  = text;
+			text_anchor.append(newLine);
+		}
+
+		//creates a button that allows you to append custom text.
+		function createTextInsertionButton(name){
+			let btn        = document.createElement("button");
+			btn.id         = name;
+			btn.innerHTML  = name;
+			btn.onclick    = () => insertText(name);
+			button_anchor.append(btn);
+		}
+
+  	let form = document.getElementById('send_container');
+
+  	//prevent page refresh
+  	form.addEventListener('submit', event => event.preventDefault());
+
+  	//what happens when submit is pressed
+  	form.onsubmit = () => createTextInsertionButton(form.message_input.value);
+
+	</script>
+
+
+
+
+</body>
+</html>
